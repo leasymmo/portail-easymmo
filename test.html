@@ -1,31 +1,341 @@
-*CONTEXT*
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue au Studio Cosy de Mel</title>
+    <style>
+        :root {
+            --primary: #6b8e6b; /* Vert rappelant les murs du studio */
+            --primary-dark: #4a634a;
+            --bg-color: #f9f9f9;
+            --text-main: #333;
+            --text-light: #666;
+            --white: #ffffff;
+            --accent: #e07a5f; /* Touche orangée/rouge rappelant les luminaires */
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
 
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-Nous sommes 4 amis qui avons ouvert une société sur Lyon de conciergerie de location courte durée (type Airbnb et Booking) sur des appartements d'investissement type studio + 1 chambre.
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-Nous avons actuellement 8 appartements en portefeuille et 2 personnes pour le ménage.
+        /* Header / Hero */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 4rem 1rem;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
 
-Nous utilisons un Channel Manager : SuperHote.com
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
 
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
 
+        /* Container & Sections */
+        .container {
+            max-width: 800px;
+            margin: -2rem auto 2rem auto;
+            padding: 0 1.5rem;
+        }
 
+        section {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
 
+        h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+            padding-bottom: 0.3rem;
+        }
 
-*INFOMATION*
+        h3 {
+            color: var(--text-main);
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 1.2rem;
+        }
 
-Je te joins en pièce jointe de guide de bienvenue (livret d'accueil) pour le Studio Cosy de Mel.
+        p, ul {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
 
+        ul {
+            padding-left: 1.5rem;
+        }
 
+        li {
+            margin-bottom: 0.5rem;
+        }
 
-*OBJECTIF*
+        /* Emphase visuelle (Wifi, Code, etc.) */
+        .highlight-box {
+            background: rgba(107, 142, 107, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 0 10px 10px 0;
+            margin: 1rem 0;
+        }
 
-Transformer ce Guide de Bienvenue PDF en page Web de Bienvenue
+        .highlight-box strong {
+            color: var(--primary-dark);
+            display: block;
+            font-size: 1.1rem;
+        }
 
-1. extrait toute les données du guide en pièce jointe à propos du logement
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: var(--bg-color);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
 
-2. créer une page web en HTML, CSS, JavaScript 
+        .contact-info strong {
+            display: block;
+            color: var(--accent);
+        }
 
-3. le site devra avoir de super effet visuel et sera responsive sur mobile
+        /* Grid pour les équipements et adresses */
+        .grid-2-cols {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
 
-4. toute le contenu du Guide de Bienvenue sera sur cette page web de Bienvenue
+        /* Badges pour les règles */
+        .rule-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (min-width: 600px) {
+            .grid-2-cols {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>STUDIO COSY DE MEL [cite: 2, 38]</h1>
+        <p class="subtitle">294 COURS ÉMILE-ZOLA, 69100 VILLEURBANNE [cite: 3, 39]</p>
+    </header>
+
+    <div class="container">
+        
+        <section class="reveal">
+            <h2>À propos de l'appartement [cite: 4]</h2>
+            <p>L'appartement a été entièrement pensé et agencé pour offrir un cadre à la fois chaleureux, fonctionnel et parfaitement adapté aux exigences des séjours urbains de courte durée[cite: 5].</p>
+            <ul>
+                <li><strong>La pièce de vie :</strong> Un espace lumineux et décoré avec soin, propice à la détente après une journée de déplacements[cite: 6]. Comprend un canapé convertible de dimensions 150x180 cm [cite: 7] et une Smart TV avec un compte Netflix disponible pour le divertissement[cite: 8].</li>
+                <li><strong>L'espace de travail :</strong> Un bureau dédié a été aménagé pour permettre de travailler[cite: 9].</li>
+                <li><strong>La cuisine ouverte :</strong> Espace moderne comprenant des plaques de cuisson, un micro-ondes, un mini-réfrigérateur, ainsi qu'une machine Nespresso, une bouilloire et un grille-pain[cite: 10].</li>
+                <li><strong>La salle de bain :</strong> Une pièce d'eau pratique avec des meubles de rangement, un sèche-cheveux et des produits de douche essentiels fournis à l'arrivée[cite: 11].</li>
+                <li><strong>Le grand jardin partagé :</strong> Un accès exclusif au parc de la résidence, équipé de tables et de chaises, idéal pour profiter des journées ensoleillées[cite: 12].</li>
+            </ul>
+        </section>
+
+        <section class="reveal">
+            <h2>Votre hôte [cite: 15]</h2>
+            <p>Bonjour ! Je m'appelle Anthony, passionné par l'hospitalité, j'ai eu la chance d'accueillir des voyageurs du monde entier dans ce studio, situé très proche du quartier des Brotteaux[cite: 13].</p>
+            <p>Mon but ? Offrir à mes invités un espace confortable, propre et accueillant, tout en leur permettant de découvrir les meilleurs endroits de la ville comme des locaux ! [cite: 14]</p>
+            <p>En dehors de la gestion de cet appartement, je suis responsable de ma société dans le domaine du voyage, ce qui me permet de rencontrer des gens formidables et d'explorer des idées créatives[cite: 16]. Je m'efforce de fournir un service impeccable, avec une attention particulière à la propreté, à la communication rapide, et à la satisfaction de mes invités[cite: 19]. Je veux que vous vous sentiez comme chez vous tout en profitant de tout ce que Lyon a à vous offrir[cite: 20].</p>
+            
+            <div class="contact-card">
+                <div class="contact-info">
+                    <strong>L'EASYMMO CONCIERGERIE [cite: 17]</strong>
+                    <p>Tél: +33 6 75 88 37 91 [cite: 22]<br>
+                    Email: leasymmo.contact@gmail.com [cite: 22]</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <h2>Arrivée & Départ [cite: 40, 48]</h2>
+            <div class="grid-2-cols">
+                <div class="highlight-box">
+                    <strong>HEURE DE CHECKIN : 15H00 [cite: 41]</strong>
+                    <p>L'accès à l'immeuble s'effectue via un lien ou un numéro de téléphone (transmis la veille)[cite: 42]. Une fois à l'intérieur, ouvrez la boîte aux lettres située tout en haut à droite[cite: 43]. Déverrouillez ensuite la boîte à clés de droite avec votre code pour récupérer vos clés[cite: 44]. Montez par les escaliers jusqu'au 4ème étage[cite: 45]. Franchissez la porte du sas juste en face de vous : le Studio de Mel se trouve alors sur votre droite ! [cite: 46, 47]</p>
+                </div>
+                <div class="highlight-box">
+                    <strong>HEURE DE DÉPART : 11H00 [cite: 49]</strong>
+                    <p>Votre départ devra avoir lieu au plus tard à 11h, afin de laisser le temps au prestataire de ménage de préparer l'appartement pour la nouvelle arrivée à 15h[cite: 50]. Faites une dernière fois le tour de l'appartement pour ne rien oublier, puis replacez la clé dans la boîte sécurisée, il ne sera plus possible de rentrer après 11h[cite: 51].</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <div class="grid-2-cols">
+                <div>
+                    <h2>Wifi de l'appartement [cite: 32, 33]</h2>
+                    <div class="highlight-box">
+                        <strong>RÉSEAU :</strong> Studio Cosy [cite: 34, 35]
+                        <br><br>
+                        <strong>MOT DE PASSE :</strong> WelcomeStudioCosy [cite: 36, 37]
+                    </div>
+                </div>
+                <div>
+                    <h2>Règles de l'appartement [cite: 53]</h2>
+                    <p><span class="rule-badge">PAS D'ANIMAUX</span> Seuls les animaux d'assistance sont acceptés au sein du logement[cite: 54, 55].</p>
+                    <p><span class="rule-badge">PAS DE CIGARETTE</span> Strictement interdit de fumer à l'intérieur du studio. Vous pouvez fumer dans le jardin partagé de la résidence[cite: 56, 57, 58].</p>
+                    <p><span class="rule-badge">PAS DE FÊTES</span> Fêtes et soirées interdites. Merci de ne pas mettre de musique trop forte après 22h[cite: 59, 60, 61].</p>
+                    <p><span class="rule-badge">DOMMAGES</span> Merci de signaler tout dommage ou casse dès votre arrivée ou durant le séjour[cite: 62, 63].</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <h2>Électroménagers & Ménage [cite: 64, 75]</h2>
+            <div class="grid-2-cols">
+                <div>
+                    <h3>Cuisine & Repas [cite: 84]</h3>
+                    <p><strong>Café & Thé :</strong> Machine Nespresso et bouilloire électrique. Quelques capsules et sachets offerts à l'arrivée[cite: 76, 77, 78].</p>
+                    <p><strong>Cuisson :</strong> Deux plaques vitrocéramiques, four micro-ondes, mini-réfrigérateur avec congélateur, grille-pain[cite: 79, 81]. Ustensiles complets (casseroles, vaisselle, tire-bouchon, etc.)[cite: 87, 88].</p>
+                </div>
+                <div>
+                    <h3>Entretien & Confort</h3>
+                    <p><strong>Lave-linge :</strong> À disposition, avec planche et fer à repasser[cite: 85, 89]. (Sèche-cheveux et fer sous l'évier [cite: 73, 74]).</p>
+                    <p><strong>Ménage :</strong> Dans le placard à l'entrée : aspirateur, balai, balai serpillière, pelle et balayette, seau, séchoir[cite: 65, 66, 67, 68, 69, 70, 72].</p>
+                    <p><strong>Télévision :</strong> Smart TV connectée (Netflix pré-connecté, Disney+, Prime Video, Youtube)[cite: 86, 90].</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <h2>Se déplacer & Parking [cite: 91, 111]</h2>
+            <ul>
+                <li><strong>Taxi & VTC :</strong> Uber, Bolt, Freenow, Heetch disponibles[cite: 92, 93].</li>
+                <li><strong>Métro & Bus :</strong> Arrêt "Flachet - Alain Gilles" (Ligne A) au pied de l'immeuble (15 min de Bellecour). Bus C23 et 69 à proximité[cite: 94, 95].</li>
+                <li><strong>Gares :</strong> Part-Dieu à 15 min (bus C23 ou métro A -> B). Perrache en direct via la ligne A depuis Flachet[cite: 104, 105, 106].</li>
+                <li><strong>Aéroport :</strong> Depuis St-Exupéry, Rhônexpress jusqu'à "Vaulx-en-Velin La Soie" (21 min), puis métro A direction Perrache, arrêt Flachet[cite: 96, 97, 98].</li>
+                <li><strong>Vélo'v & Trottinettes :</strong> Station Vélo'v à la sortie du métro Flachet (moins de 100m, 1,80€ les 30 min). Trottinettes en libre-service disponibles[cite: 107, 108, 109, 110].</li>
+                <li><strong>Parking :</strong> Rues payantes (appli Flowbird) ou parkings couverts sécurisés (LPA&CO rue Flachet, Yespark République) à quelques minutes[cite: 112, 113, 114].</li>
+            </ul>
+        </section>
+
+        <section class="reveal">
+            <h2>Dans le quartier [cite: 115]</h2>
+            <div class="grid-2-cols">
+                <div>
+                    <h3>À découvrir</h3>
+                    <p><strong>Quartier des Gratte-Ciel :</strong> Conçu dans les années 1930, chef-d'œuvre d'architecture moderne. Idéal pour le shopping et flâner[cite: 116, 117, 118].</p>
+                    <p><strong>Cinéma Le Zola :</strong> Au 117 Cours Émile-Zola, cinéma indépendant Art et Essai depuis 1920[cite: 119, 120].</p>
+                    <p><strong>Marché du Cours Émile-Zola :</strong> Mardis, vendredis et samedis matins. Produits frais et locaux[cite: 124, 125, 126].</p>
+                </div>
+                <div>
+                    <h3>Commerces & Artisans</h3>
+                    <p><strong>Boulangerie Maison Bettant :</strong> 33 Avenue Henri Barbusse (depuis 1935). Goûtez leur Tarte Praline rose ! [cite: 121, 122, 123]</p>
+                    <p><strong>Rue des Producteurs :</strong> Fromages affinés, charcuteries et vins de la région[cite: 146, 147].</p>
+                    <p><strong>Monoprix :</strong> 305 Cours Émile-Zola (ouvert 8h-20h30 et dimanche matin)[cite: 148].</p>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 1rem;">Où manger & Boire un verre ? [cite: 131, 150]</h3>
+            <ul>
+                <li><strong>Restaurants à Flachet :</strong> Pencil Sharpener (brunch), La Table de l'Atelier (dîner raffiné), Emile's Bistro (bouchon traditionnel)[cite: 127, 128, 129, 130].</li>
+                <li><strong>Spécialités du monde & Street Food :</strong> Bombay Tandoori (naans/épices) [cite: 132, 133], Saveurs D'Arménie (fait maison) [cite: 134, 135, 136], 3Poivres (tacos/burgers) [cite: 137, 138], Tonnerre de Brest (crêperie mythique) [cite: 139, 140], Curcuma (buffet indien)[cite: 141, 142, 143, 144].</li>
+                <li><strong>Les meilleurs bars :</strong> Le Taille-Crayon (jardin/pétanque) [cite: 151, 152, 153], La Melting Coop (bar coopératif/bio) [cite: 154, 155], Bar Tabac Les Terrasses (authentique) [cite: 156, 157], Le Bieristan (bières/cocktails) [cite: 158, 159], Ninkasi Gratte-Ciel (bières crafts, burgers, musique)[cite: 160, 161, 162, 163, 164].</li>
+            </ul>
+        </section>
+
+        <section class="reveal">
+            <div class="grid-2-cols">
+                <div>
+                    <h2>Avant de partir [cite: 165]</h2>
+                    <ul>
+                        <li><strong>Vaisselle :</strong> Lavée, séchée et rangée[cite: 166, 167].</li>
+                        <li><strong>Nourriture :</strong> Vider le frigo et le congélateur[cite: 168, 169].</li>
+                        <li><strong>Poubelles :</strong> Jeter tous les déchets[cite: 170, 171].</li>
+                        <li><strong>Énergies :</strong> Fermer fenêtres, éteindre lumières et chauffages[cite: 172, 173, 174, 175, 176].</li>
+                        <li><strong>Objets personnels :</strong> Vérifiez de ne rien oublier ! [cite: 177]</li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Urgences [cite: 28]</h2>
+                    <div class="highlight-box" style="border-left-color: #d9534f; background: rgba(217, 83, 79, 0.05);">
+                        <p><strong>Médipôle Lyon-Villeurbanne :</strong><br>158 Rue Léon Blum [cite: 29]</p>
+                        <p><strong>Pharmacie de Garde :</strong><br>28 Avenue Henri Barbusse [cite: 30]</p>
+                        <p><strong>Commissariat (130m) :</strong><br>225 cours Émile-Zola [cite: 31]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin: 3rem 0; color: var(--primary);">
+            <h2>Merci ! Très beau séjour à vous ! [cite: 192, 193]</h2>
+            <p>N'hésitez pas à laisser un commentaire si vous avez apprécié votre séjour. [cite: 179, 180]</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Effet d'apparition au scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const revealOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Ne joue l'animation qu'une seule fois
+                    }
+                });
+            }, {
+                threshold: 0.15, // Se déclenche quand 15% de l'élément est visible
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+    </script>
+</body>
+</html>
