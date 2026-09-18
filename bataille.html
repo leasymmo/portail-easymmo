@@ -3,50 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guide de Bienvenue - Bataille</title>
-    <!-- Utilisation de Tailwind CSS pour un style moderne et rapide -->
+    <title>Portail Voyageurs - Bataille</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Animation d'apparition fluide pour les onglets */
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
-<body class="bg-gray-50 flex items-center justify-center min-h-screen font-sans">
+<body class="bg-gray-100 text-gray-800 font-sans antialiased">
 
-    <div class="max-w-md w-full bg-white rounded-2xl shadow-lg p-8 text-center mx-4">
+    <!-- Conteneur principal simulant un écran de smartphone -->
+    <div class="max-w-md mx-auto min-h-screen bg-white shadow-2xl relative flex flex-col">
         
         <!-- En-tête -->
-        <h1 class="text-2xl font-bold text-gray-800 mb-2">Bataille</h1>
-        <p class="text-gray-500 mb-8 text-sm uppercase tracking-wide">Conciergerie L'Easymmo</p>
+        <div class="px-6 py-8 text-center bg-gradient-to-b from-gray-50 to-white border-b border-gray-100">
+            <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-1">Bataille</h1>
+            <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest">Conciergerie L'Easymmo</p>
+        </div>
 
-        <!-- Titre d'instruction -->
-        <h2 class="text-lg font-medium text-gray-700 mb-6">
-            Choisissez votre langue <br> 
-            <span class="text-gray-400 font-normal text-base">Choose your language</span>
-        </h2>
+        <!-- Menu de navigation (Onglets) -->
+        <div class="flex border-b border-gray-200 bg-white sticky top-0 z-10">
+            <button id="btn-guides" onclick="openTab('guides')" class="flex-1 py-4 text-sm font-medium border-b-2 border-blue-600 text-blue-600 transition-colors duration-200 focus:outline-none">
+                📚 Guides
+            </button>
+            <button id="btn-tutos" onclick="openTab('tutos')" class="flex-1 py-4 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-900 transition-colors duration-200 focus:outline-none">
+                🎥 Tutoriels vidéo
+            </button>
+        </div>
 
-        <!-- Boutons de sélection -->
-        <div class="space-y-4">
-            
-            <!-- Lien vers le guide FR -->
-            <a href="https://drive.google.com/file/d/1x7yyx4NbnvjP4gigDsvjli4tOENQ98sU/view?usp=sharing" target="_blank" rel="noopener noreferrer" 
-               class="flex items-center justify-center w-full py-4 px-6 bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition duration-200 shadow-md">
-                <span class="text-2xl mr-3">🇫🇷</span>
-                <span class="text-lg font-semibold">Français</span>
-            </a>
+        <!-- Zone de contenu avec un ID pour gérer le scroll -->
+        <div id="scroll-container" class="flex-1 p-6 overflow-y-auto pb-20">
 
-            <!-- Lien vers le guide EN -->
-            <a href="https://drive.google.com/file/d/1q5lbxNLdQQI-_rFBWjPHn6r-6IOiTLCI/view?usp=sharing" target="_blank" rel="noopener noreferrer" 
-               class="flex items-center justify-center w-full py-4 px-6 bg-gray-800 hover:bg-gray-900 text-white rounded-xl transition duration-200 shadow-md">
-                <span class="text-2xl mr-3">🇬🇧</span>
-                <span class="text-lg font-semibold">English</span>
-            </a>
+            <!-- Onglet 1 : Guides (ID modifié pour éviter le saut natif du navigateur) -->
+            <div id="content-guides" class="hidden fade-in space-y-6">
+                <div class="text-center mb-6">
+                    <h2 class="text-lg font-semibold text-gray-800">Livrets d'accueil</h2>
+                    <p class="text-sm text-gray-500 mt-1">Choisissez votre langue / Choose your language</p>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Guide FR -->
+                    <a href="https://drive.google.com/file/d/1x7yyx4NbnvjP4gigDsvjli4tOENQ98sU/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 bg-blue-50 border border-blue-100 rounded-2xl hover:bg-blue-100 transition shadow-sm group">
+                        <div class="flex items-center">
+                            <span class="text-3xl mr-4 shadow-sm rounded-full">🇫🇷</span>
+                            <span class="text-lg font-bold text-blue-900 group-hover:text-blue-700">Français</span>
+                        </div>
+                        <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+
+                    <!-- Guide EN -->
+                    <a href="https://drive.google.com/file/d/1q5lbxNLdQQI-_rFBWjPHn6r-6IOiTLCI/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 bg-gray-50 border border-gray-200 rounded-2xl hover:bg-gray-100 transition shadow-sm group">
+                        <div class="flex items-center">
+                            <span class="text-3xl mr-4 shadow-sm rounded-full">🇬🇧</span>
+                            <span class="text-lg font-bold text-gray-900 group-hover:text-gray-700">English</span>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Onglet 2 : Tutoriels (ID modifié) -->
+            <div id="content-tutos" class="hidden fade-in space-y-4">
+                <div class="text-center mb-6">
+                    <h2 class="text-lg font-semibold text-gray-800">Modes d'emploi</h2>
+                    <p class="text-sm text-gray-500 mt-1">Fonctionnement des équipements</p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-3">
+                    
+                    <!-- Lave-linge -->
+                    <a href="https://drive.google.com/file/d/1NMkCkVSiQxLAURf384V_safGuTCZOn8s/view?usp=drive_link" target="_blank" class="flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 flex-shrink-0 bg-blue-50 text-blue-500 rounded-xl flex items-center justify-center text-2xl mr-4">🫧</div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-800">Machine à laver</h3>
+                            <p class="text-xs text-gray-400">Washing machine</p>
+                        </div>
+                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </a>
+
+                    <!-- Plaque induction -->
+                    <a href="https://drive.google.com/file/d/1aY7199w2PtwY6X7Zr0GBgZggL0aDEfds/view?usp=drive_link" target="_blank" class="flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 flex-shrink-0 bg-orange-50 text-orange-500 rounded-xl flex items-center justify-center text-2xl mr-4">🍳</div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-800">Plaque induction</h3>
+                            <p class="text-xs text-gray-400">Induction stove</p>
+                        </div>
+                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </a>
+
+                    <!-- Micro-onde -->
+                    <a href="https://drive.google.com/file/d/13du7fbTv0et0B_NHjOu62a3lsD6Odop3/view?usp=drive_link" target="_blank" class="flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 flex-shrink-0 bg-gray-100 text-gray-600 rounded-xl flex items-center justify-center text-2xl mr-4">♨️</div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-800">Micro-ondes</h3>
+                            <p class="text-xs text-gray-400">Microwave</p>
+                        </div>
+                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </a>
+
+                    <!-- Bouilloire -->
+                    <a href="https://drive.google.com/file/d/1xuuLjmOh3LzsCEYKIrcTaWZURdMT9FDg/view?usp=drive_link" target="_blank" class="flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 flex-shrink-0 bg-teal-50 text-teal-500 rounded-xl flex items-center justify-center text-2xl mr-4">🫖</div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-800">Bouilloire</h3>
+                            <p class="text-xs text-gray-400">Kettle</p>
+                        </div>
+                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </a>
+
+                    <!-- Télévision -->
+                    <a href="https://drive.google.com/file/d/1LezEzqApQWpYI_53IzFefZuABL_eJdkw/view?usp=drive_link" target="_blank" class="flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 flex-shrink-0 bg-zinc-100 text-zinc-600 rounded-xl flex items-center justify-center text-2xl mr-4">📺</div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-800">Télévision</h3>
+                            <p class="text-xs text-gray-400">Television</p>
+                        </div>
+                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </a>
+
+                    <!-- Machine à café -->
+                    <a href="https://drive.google.com/file/d/1HcMK0c2A7iMrOz8-c6kfS5wTSyY1tuSo/view?usp=drive_link" target="_blank" class="flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 flex-shrink-0 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center text-2xl mr-4">☕</div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-800">Machine à café</h3>
+                            <p class="text-xs text-gray-400">Coffee maker</p>
+                        </div>
+                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </a>
+
+                    <!-- Canapé convertible -->
+                    <a href="https://drive.google.com/file/d/1asJroLOSOiLJAthgJP_erkG9WxHniUa9/view?usp=drive_link" target="_blank" class="flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 flex-shrink-0 bg-rose-50 text-rose-500 rounded-xl flex items-center justify-center text-2xl mr-4">🛋️</div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-800">Canapé convertible</h3>
+                            <p class="text-xs text-gray-400">Sofa bed</p>
+                        </div>
+                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </a>
+
+                </div>
+            </div>
 
         </div>
 
-        <!-- Footer -->
-        <div class="mt-10 text-gray-400 text-xs">
-            <p>Nous vous souhaitons un excellent séjour !</p>
-            <p>Have a great stay!</p>
+        <!-- Pied de page -->
+        <div class="mt-auto py-6 text-center text-gray-400 text-xs bg-gray-50 border-t border-gray-100">
+            <p class="font-medium text-gray-500">Nous vous souhaitons un excellent séjour !</p>
+            <p class="mt-1">Have a great stay!</p>
         </div>
-
     </div>
 
+    <!-- Script de gestion des onglets -->
+    <script>
+        function openTab(tabId) {
+            // 1. Mettre à jour l'URL sans déclencher le saut (pushState)
+            if (history.pushState) {
+                history.pushState(null, null, '#' + tabId);
+            }
+
+            // 2. Cacher tout le contenu (on cible maintenant "content-...")
+            document.getElementById('content-guides').classList.add('hidden');
+            document.getElementById('content-tutos').classList.add('hidden');
+            
+            // 3. Réinitialiser le style de tous les boutons
+            const btnGuides = document.getElementById('btn-guides');
+            const btnTutos = document.getElementById('btn-tutos');
+            
+            [btnGuides, btnTutos].forEach(btn => {
+                btn.classList.remove('border-blue-600', 'text-blue-600');
+                btn.classList.add('border-transparent', 'text-gray-500');
+            });
+
+            // 4. Afficher l'onglet sélectionné
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+
+            // 5. Appliquer le style "actif" au bouton
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.remove('border-transparent', 'text-gray-500');
+            activeBtn.classList.add('border-blue-600', 'text-blue-600');
+
+            // 6. Forcer le défilement tout en haut de la fenêtre globale ET du conteneur scrollable
+            window.scrollTo(0, 0);
+            document.getElementById('scroll-container').scrollTop = 0;
+        }
+
+        // Au chargement de la page
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.substring(1); 
+            
+            if (hash === 'tutos' || hash === 'guides') {
+                openTab(hash);
+            } else {
+                openTab('guides');
+            }
+        });
+    </script>
 </body>
 </html>
