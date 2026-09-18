@@ -7,287 +7,188 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Animations d'apparition */
-        .fade-in {
-            animation: fadeIn 0.3s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .slide-up {
-            animation: slideUp 0.3s ease-out;
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(100%); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .slide-up { animation: slideUp 0.3s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(100%); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans antialiased">
 
-    <!-- Conteneur principal simulant un écran de smartphone -->
+    <!-- Conteneur principal -->
     <div class="max-w-md mx-auto min-h-screen bg-white shadow-2xl relative flex flex-col">
         
-        <!-- En-tête -->
         <div class="px-6 py-8 text-center bg-gradient-to-b from-gray-50 to-white border-b border-gray-100">
             <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-1">Bataille</h1>
             <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest">Conciergerie L'Easymmo</p>
         </div>
 
-        <!-- Menu de navigation (Onglets) -->
+        <!-- Onglets -->
         <div class="flex border-b border-gray-200 bg-white sticky top-0 z-10">
-            <button id="btn-guides" onclick="openTab('guides')" class="flex-1 py-4 text-sm font-medium border-b-2 border-blue-600 text-blue-600 transition-colors duration-200 focus:outline-none">
-                📚 Guides
-            </button>
-            <button id="btn-tutos" onclick="openTab('tutos')" class="flex-1 py-4 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-900 transition-colors duration-200 focus:outline-none">
-                🎥 Tutoriels vidéo
-            </button>
+            <button id="btn-guides" onclick="openTab('guides')" class="flex-1 py-4 text-sm font-medium border-b-2 border-blue-600 text-blue-600 transition focus:outline-none">📚 Guides</button>
+            <button id="btn-tutos" onclick="openTab('tutos')" class="flex-1 py-4 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-900 transition focus:outline-none">🎥 Tutoriels</button>
         </div>
 
-        <!-- Zone de contenu -->
         <div id="scroll-container" class="flex-1 p-6 overflow-y-auto pb-20">
 
-            <!-- Onglet 1 : Guides -->
+            <!-- GUIDES (S'ouvrent toujours en Iframe) -->
             <div id="content-guides" class="hidden fade-in space-y-6">
                 <div class="text-center mb-6">
                     <h2 class="text-lg font-semibold text-gray-800">Livrets d'accueil</h2>
-                    <p class="text-sm text-gray-500 mt-1">Choisissez votre langue / Choose your language</p>
                 </div>
-
                 <div class="space-y-4">
-                    <!-- Guide FR -->
-                    <button onclick="openPlayer('https://drive.google.com/file/d/1x7yyx4NbnvjP4gigDsvjli4tOENQ98sU/preview', 'Guide d\'accueil Français', 'pdf')" class="w-full flex items-center justify-between p-4 bg-blue-50 border border-blue-100 rounded-2xl hover:bg-blue-100 transition shadow-sm group">
-                        <div class="flex items-center">
-                            <span class="text-3xl mr-4 shadow-sm rounded-full">🇫🇷</span>
-                            <span class="text-lg font-bold text-blue-900 group-hover:text-blue-700">Français</span>
-                        </div>
-                        <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    <button onclick="openPdf('1x7yyx4NbnvjP4gigDsvjli4tOENQ98sU', 'Guide d\'accueil Français')" class="w-full flex items-center justify-between p-4 bg-blue-50 border border-blue-100 rounded-2xl shadow-sm">
+                        <div class="flex items-center"><span class="text-3xl mr-4 shadow-sm rounded-full">🇫🇷</span><span class="text-lg font-bold text-blue-900">Français</span></div>
                     </button>
-
-                    <!-- Guide EN -->
-                    <button onclick="openPlayer('https://drive.google.com/file/d/1q5lbxNLdQQI-_rFBWjPHn6r-6IOiTLCI/preview', 'English Welcome Guide', 'pdf')" class="w-full flex items-center justify-between p-4 bg-gray-50 border border-gray-200 rounded-2xl hover:bg-gray-100 transition shadow-sm group">
-                        <div class="flex items-center">
-                            <span class="text-3xl mr-4 shadow-sm rounded-full">🇬🇧</span>
-                            <span class="text-lg font-bold text-gray-900 group-hover:text-gray-700">English</span>
-                        </div>
-                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    <button onclick="openPdf('1q5lbxNLdQQI-_rFBWjPHn6r-6IOiTLCI', 'English Welcome Guide')" class="w-full flex items-center justify-between p-4 bg-gray-50 border border-gray-200 rounded-2xl shadow-sm">
+                        <div class="flex items-center"><span class="text-3xl mr-4 shadow-sm rounded-full">🇬🇧</span><span class="text-lg font-bold text-gray-900">English</span></div>
                     </button>
                 </div>
             </div>
 
-            <!-- Onglet 2 : Tutoriels -->
+            <!-- TUTORIELS VIDÉO (Utilisent l'API Google Drive et le lecteur natif) -->
             <div id="content-tutos" class="hidden fade-in space-y-4">
                 <div class="text-center mb-6">
                     <h2 class="text-lg font-semibold text-gray-800">Modes d'emploi</h2>
-                    <p class="text-sm text-gray-500 mt-1">Fonctionnement des équipements</p>
                 </div>
-
                 <div class="grid grid-cols-1 gap-3">
-                    
-                    <!-- Lave-linge -->
-                    <button onclick="openPlayer('https://drive.google.com/uc?export=download&id=1NMkCkVSiQxLAURf384V_safGuTCZOn8s', 'Tuto : Machine à laver', 'video')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
-                        <div class="w-12 h-12 flex-shrink-0 bg-blue-50 text-blue-500 rounded-xl flex items-center justify-center text-2xl mr-4">🫧</div>
-                        <div class="flex-1">
-                            <h3 class="font-semibold text-gray-800">Machine à laver</h3>
-                            <p class="text-xs text-gray-400">Washing machine</p>
-                        </div>
-                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <!-- Notez qu'ici on passe uniquement l'ID du fichier Google Drive -->
+                    <button onclick="openVideo('1NMkCkVSiQxLAURf384V_safGuTCZOn8s', 'Machine à laver')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-blue-50 text-blue-500 rounded-xl flex items-center justify-center text-2xl mr-4">🫧</div>
+                        <div class="flex-1"><h3 class="font-semibold text-gray-800">Machine à laver</h3></div>
                     </button>
 
-                    <!-- Plaque induction -->
-                    <button onclick="openPlayer('https://drive.google.com/uc?export=download&id=1aY7199w2PtwY6X7Zr0GBgZggL0aDEfds', 'Tuto : Plaque induction', 'video')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
-                        <div class="w-12 h-12 flex-shrink-0 bg-orange-50 text-orange-500 rounded-xl flex items-center justify-center text-2xl mr-4">🍳</div>
-                        <div class="flex-1">
-                            <h3 class="font-semibold text-gray-800">Plaque induction</h3>
-                            <p class="text-xs text-gray-400">Induction stove</p>
-                        </div>
-                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <button onclick="openVideo('1aY7199w2PtwY6X7Zr0GBgZggL0aDEfds', 'Plaque induction')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-orange-50 text-orange-500 rounded-xl flex items-center justify-center text-2xl mr-4">🍳</div>
+                        <div class="flex-1"><h3 class="font-semibold text-gray-800">Plaque induction</h3></div>
                     </button>
 
-                    <!-- Micro-onde -->
-                    <button onclick="openPlayer('https://drive.google.com/uc?export=download&id=13du7fbTv0et0B_NHjOu62a3lsD6Odop3', 'Tuto : Micro-ondes', 'video')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
-                        <div class="w-12 h-12 flex-shrink-0 bg-gray-100 text-gray-600 rounded-xl flex items-center justify-center text-2xl mr-4">♨️</div>
-                        <div class="flex-1">
-                            <h3 class="font-semibold text-gray-800">Micro-ondes</h3>
-                            <p class="text-xs text-gray-400">Microwave</p>
-                        </div>
-                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <button onclick="openVideo('13du7fbTv0et0B_NHjOu62a3lsD6Odop3', 'Micro-ondes')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-gray-100 text-gray-600 rounded-xl flex items-center justify-center text-2xl mr-4">♨️</div>
+                        <div class="flex-1"><h3 class="font-semibold text-gray-800">Micro-ondes</h3></div>
                     </button>
 
-                    <!-- Bouilloire -->
-                    <button onclick="openPlayer('https://drive.google.com/uc?export=download&id=1xuuLjmOh3LzsCEYKIrcTaWZURdMT9FDg', 'Tuto : Bouilloire', 'video')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
-                        <div class="w-12 h-12 flex-shrink-0 bg-teal-50 text-teal-500 rounded-xl flex items-center justify-center text-2xl mr-4">🫖</div>
-                        <div class="flex-1">
-                            <h3 class="font-semibold text-gray-800">Bouilloire</h3>
-                            <p class="text-xs text-gray-400">Kettle</p>
-                        </div>
-                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <button onclick="openVideo('1xuuLjmOh3LzsCEYKIrcTaWZURdMT9FDg', 'Bouilloire')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-teal-50 text-teal-500 rounded-xl flex items-center justify-center text-2xl mr-4">🫖</div>
+                        <div class="flex-1"><h3 class="font-semibold text-gray-800">Bouilloire</h3></div>
                     </button>
 
-                    <!-- Télévision -->
-                    <button onclick="openPlayer('https://drive.google.com/uc?export=download&id=1LezEzqApQWpYI_53IzFefZuABL_eJdkw', 'Tuto : Télévision', 'video')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
-                        <div class="w-12 h-12 flex-shrink-0 bg-zinc-100 text-zinc-600 rounded-xl flex items-center justify-center text-2xl mr-4">📺</div>
-                        <div class="flex-1">
-                            <h3 class="font-semibold text-gray-800">Télévision</h3>
-                            <p class="text-xs text-gray-400">Television</p>
-                        </div>
-                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <button onclick="openVideo('1LezEzqApQWpYI_53IzFefZuABL_eJdkw', 'Télévision')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-zinc-100 text-zinc-600 rounded-xl flex items-center justify-center text-2xl mr-4">📺</div>
+                        <div class="flex-1"><h3 class="font-semibold text-gray-800">Télévision</h3></div>
                     </button>
 
-                    <!-- Machine à café -->
-                    <button onclick="openPlayer('https://drive.google.com/uc?export=download&id=1HcMK0c2A7iMrOz8-c6kfS5wTSyY1tuSo', 'Tuto : Machine à café', 'video')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
-                        <div class="w-12 h-12 flex-shrink-0 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center text-2xl mr-4">☕</div>
-                        <div class="flex-1">
-                            <h3 class="font-semibold text-gray-800">Machine à café</h3>
-                            <p class="text-xs text-gray-400">Coffee maker</p>
-                        </div>
-                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <button onclick="openVideo('1HcMK0c2A7iMrOz8-c6kfS5wTSyY1tuSo', 'Machine à café')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center text-2xl mr-4">☕</div>
+                        <div class="flex-1"><h3 class="font-semibold text-gray-800">Machine à café</h3></div>
                     </button>
 
-                    <!-- Canapé convertible -->
-                    <button onclick="openPlayer('https://drive.google.com/uc?export=download&id=1asJroLOSOiLJAthgJP_erkG9WxHniUa9', 'Tuto : Canapé convertible', 'video')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
-                        <div class="w-12 h-12 flex-shrink-0 bg-rose-50 text-rose-500 rounded-xl flex items-center justify-center text-2xl mr-4">🛋️</div>
-                        <div class="flex-1">
-                            <h3 class="font-semibold text-gray-800">Canapé convertible</h3>
-                            <p class="text-xs text-gray-400">Sofa bed</p>
-                        </div>
-                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <button onclick="openVideo('1asJroLOSOiLJAthgJP_erkG9WxHniUa9', 'Canapé convertible')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-rose-50 text-rose-500 rounded-xl flex items-center justify-center text-2xl mr-4">🛋️</div>
+                        <div class="flex-1"><h3 class="font-semibold text-gray-800">Canapé convertible</h3></div>
                     </button>
-
                 </div>
             </div>
-
-        </div>
-
-        <!-- Pied de page -->
-        <div class="mt-auto py-6 text-center text-gray-400 text-xs bg-gray-50 border-t border-gray-100">
-            <p class="font-medium text-gray-500">Nous vous souhaitons un excellent séjour !</p>
-            <p class="mt-1">Have a great stay!</p>
         </div>
     </div>
 
-    <!-- Modale du Lecteur Vidéo/PDF -->
+    <!-- Modale de Lecture -->
     <div id="player-modal" class="fixed inset-0 z-50 bg-black/95 hidden flex-col slide-up">
         
-        <!-- Barre de contrôle de la modale -->
-        <div class="flex items-center justify-between px-4 py-3 bg-gray-900 border-b border-gray-800">
-            <h3 id="player-title" class="text-white font-medium text-sm truncate pr-4">Tutoriel</h3>
+        <div class="flex items-center justify-between px-4 py-3 bg-gray-900 border-b border-gray-800 relative z-20">
+            <h3 id="player-title" class="text-white font-medium text-sm truncate pr-4">Lecteur</h3>
             <button onclick="closePlayer()" class="text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 p-2 rounded-full transition focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
         
-        <!-- Zone de lecture (Contient à la fois une iframe pour les PDF et une balise video pour les MP4) -->
         <div class="flex-1 w-full relative flex items-center justify-center bg-black">
             
-            <!-- Loader affiché pendant le chargement (surtout utile pour le PDF) -->
-            <div id="player-loader" class="absolute flex flex-col items-center">
-                <svg class="animate-spin h-8 w-8 text-blue-500 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
+            <div id="player-loader" class="absolute flex flex-col items-center z-0">
+                <svg class="animate-spin h-8 w-8 text-white mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                 <span class="text-gray-400 text-xs">Chargement...</span>
             </div>
             
-            <!-- Lecteur iframe (PDF) -->
-            <iframe id="player-frame" class="hidden w-full h-full border-0 relative z-10 transition-opacity duration-300" allow="fullscreen"></iframe>
+            <!-- Iframe pour les PDF -->
+            <iframe id="pdf-frame" class="hidden w-full h-full border-0 relative z-10 bg-white" allow="fullscreen"></iframe>
             
-            <!-- Lecteur natif HTML5 (Vidéos) -->
-            <!-- playsinline est indispensable pour que la vidéo ne force pas le plein écran natif sur iOS -->
-            <video id="native-video" class="hidden w-full h-auto max-h-full relative z-10" controls playsinline preload="metadata"></video>
+            <!-- Lecteur natif HTML5 pour les vidéos -->
+            <video id="native-video" class="hidden w-full h-auto max-h-full relative z-10" controls playsinline preload="metadata" style="outline:none;"></video>
             
         </div>
     </div>
 
     <!-- Scripts -->
     <script>
-        // -- Gestion des onglets --
+        // === 🔴 À REMPLACER PAR VOTRE CLÉ D'API GOOGLE CLOUD ===
+        const GOOGLE_API_KEY = "AIzaSyBD3aM8rMki93QFfhEELoV8NmUrx4xXsvs"; 
+        
         function openTab(tabId) {
-            if (history.pushState) {
-                history.pushState(null, null, '#' + tabId);
-            }
+            if (history.pushState) history.pushState(null, null, '#' + tabId);
             document.getElementById('content-guides').classList.add('hidden');
             document.getElementById('content-tutos').classList.add('hidden');
             
             const btnGuides = document.getElementById('btn-guides');
             const btnTutos = document.getElementById('btn-tutos');
-            
             [btnGuides, btnTutos].forEach(btn => {
                 btn.classList.remove('border-blue-600', 'text-blue-600');
                 btn.classList.add('border-transparent', 'text-gray-500');
             });
 
             document.getElementById('content-' + tabId).classList.remove('hidden');
-            const activeBtn = document.getElementById('btn-' + tabId);
-            activeBtn.classList.remove('border-transparent', 'text-gray-500');
-            activeBtn.classList.add('border-blue-600', 'text-blue-600');
-
+            document.getElementById('btn-' + tabId).classList.add('border-blue-600', 'text-blue-600');
             window.scrollTo(0, 0);
             document.getElementById('scroll-container').scrollTop = 0;
         }
 
         window.addEventListener('DOMContentLoaded', () => {
             const hash = window.location.hash.substring(1); 
-            if (hash === 'tutos' || hash === 'guides') {
-                openTab(hash);
-            } else {
-                openTab('guides');
-            }
+            openTab(hash === 'tutos' ? 'tutos' : 'guides');
         });
 
-        // -- Gestion du lecteur intégré (Modale double : Iframe & Natif) --
-        function openPlayer(url, title, type) {
-            const modal = document.getElementById('player-modal');
-            const iframe = document.getElementById('player-frame');
+        // Ouverture d'un PDF via le lien preview classique (pas besoin d'API)
+        function openPdf(fileId, title) {
+            setupModal(title);
+            const iframe = document.getElementById('pdf-frame');
+            iframe.classList.remove('hidden');
+            iframe.src = `https://drive.google.com/file/d/${fileId}/preview`;
+            iframe.onload = () => document.getElementById('player-loader').style.display = 'none';
+        }
+
+        // Ouverture d'une vidéo via l'API Google Drive (Flux pur, sans l'interface Google)
+        function openVideo(fileId, title) {
+            setupModal(title);
             const video = document.getElementById('native-video');
-            const loader = document.getElementById('player-loader');
-            const titleEl = document.getElementById('player-title');
+            video.classList.remove('hidden');
+            
+            // On masque le loader manuel car le lecteur HTML5 gère son propre loader
+            document.getElementById('player-loader').style.display = 'none';
+            
+            // Format d'URL officiel de l'API pour récupérer le flux binaire média
+            video.src = `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=${GOOGLE_API_KEY}`;
+            
+            video.play().catch(e => console.log("L'autoplay a été bloqué par le navigateur mobile."));
+        }
 
-            titleEl.textContent = title;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-
-            if (type === 'video') {
-                // Configurer l'affichage pour la Vidéo
-                iframe.classList.add('hidden');
-                video.classList.remove('hidden');
-                loader.style.display = 'none'; // Le navigateur gère le loader de la balise vidéo
-                
-                video.src = url;
-                // Lance la vidéo automatiquement (peut être bloqué par certains navigateurs si le son n'est pas coupé)
-                video.play().catch(e => console.log("Lecture automatique bloquée : ", e));
-            } else {
-                // Configurer l'affichage pour le PDF
-                video.classList.add('hidden');
-                iframe.classList.remove('hidden');
-                iframe.style.opacity = '0';
-                loader.style.display = 'flex';
-                
-                iframe.src = url;
-                iframe.onload = () => {
-                    loader.style.display = 'none';
-                    iframe.style.opacity = '1';
-                };
-            }
+        function setupModal(title) {
+            document.getElementById('player-title').textContent = title;
+            document.getElementById('player-modal').classList.remove('hidden');
+            document.getElementById('player-modal').classList.add('flex');
+            document.getElementById('player-loader').style.display = 'flex';
         }
 
         function closePlayer() {
-            const modal = document.getElementById('player-modal');
-            const iframe = document.getElementById('player-frame');
+            document.getElementById('player-modal').classList.add('hidden');
+            document.getElementById('player-modal').classList.remove('flex');
+            
             const video = document.getElementById('native-video');
-            
-            // Fermer la modale
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            
-            // Couper la vidéo et la vider
             video.pause();
             video.src = '';
+            video.classList.add('hidden');
             
-            // Vider l'iframe
+            const iframe = document.getElementById('pdf-frame');
             iframe.src = '';
+            iframe.classList.add('hidden');
         }
     </script>
 </body>
