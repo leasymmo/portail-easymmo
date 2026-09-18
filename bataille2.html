@@ -7,7 +7,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Animations d'apparition */
+        /* Animation d'apparition fluide pour les onglets */
         .fade-in {
             animation: fadeIn 0.3s ease-in-out;
         }
@@ -15,19 +15,11 @@
             from { opacity: 0; transform: translateY(5px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        .slide-up {
-            animation: slideUp 0.3s ease-out;
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(100%); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans antialiased">
 
-    <!-- Conteneur principal -->
+    <!-- Conteneur principal simulant un écran de smartphone -->
     <div class="max-w-md mx-auto min-h-screen bg-white shadow-2xl relative flex flex-col">
         
         <!-- En-tête -->
@@ -46,10 +38,10 @@
             </button>
         </div>
 
-        <!-- Zone de contenu -->
+        <!-- Zone de contenu avec un ID pour gérer le scroll -->
         <div id="scroll-container" class="flex-1 p-6 overflow-y-auto pb-20">
 
-            <!-- Onglet 1 : Guides -->
+            <!-- Onglet 1 : Guides (ID modifié pour éviter le saut natif du navigateur) -->
             <div id="content-guides" class="hidden fade-in space-y-6">
                 <div class="text-center mb-6">
                     <h2 class="text-lg font-semibold text-gray-800">Livrets d'accueil</h2>
@@ -57,25 +49,27 @@
                 </div>
 
                 <div class="space-y-4">
-                    <button onclick="openPlayer('https://drive.google.com/file/d/1x7yyx4NbnvjP4gigDsvjli4tOENQ98sU/preview', 'Guide d\'accueil Français')" class="w-full flex items-center justify-between p-4 bg-blue-50 border border-blue-100 rounded-2xl hover:bg-blue-100 transition shadow-sm group">
+                    <!-- Guide FR -->
+                    <a href="https://drive.google.com/file/d/1x7yyx4NbnvjP4gigDsvjli4tOENQ98sU/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 bg-blue-50 border border-blue-100 rounded-2xl hover:bg-blue-100 transition shadow-sm group">
                         <div class="flex items-center">
                             <span class="text-3xl mr-4 shadow-sm rounded-full">🇫🇷</span>
                             <span class="text-lg font-bold text-blue-900 group-hover:text-blue-700">Français</span>
                         </div>
-                        <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    </button>
+                        <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
 
-                    <button onclick="openPlayer('https://drive.google.com/file/d/1q5lbxNLdQQI-_rFBWjPHn6r-6IOiTLCI/preview', 'English Welcome Guide')" class="w-full flex items-center justify-between p-4 bg-gray-50 border border-gray-200 rounded-2xl hover:bg-gray-100 transition shadow-sm group">
+                    <!-- Guide EN -->
+                    <a href="https://drive.google.com/file/d/1q5lbxNLdQQI-_rFBWjPHn6r-6IOiTLCI/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 bg-gray-50 border border-gray-200 rounded-2xl hover:bg-gray-100 transition shadow-sm group">
                         <div class="flex items-center">
                             <span class="text-3xl mr-4 shadow-sm rounded-full">🇬🇧</span>
                             <span class="text-lg font-bold text-gray-900 group-hover:text-gray-700">English</span>
                         </div>
-                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    </button>
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
                 </div>
             </div>
 
-            <!-- Onglet 2 : Tutoriels -->
+            <!-- Onglet 2 : Tutoriels (ID modifié) -->
             <div id="content-tutos" class="hidden fade-in space-y-4">
                 <div class="text-center mb-6">
                     <h2 class="text-lg font-semibold text-gray-800">Modes d'emploi</h2>
@@ -84,68 +78,75 @@
 
                 <div class="grid grid-cols-1 gap-3">
                     
-                    <button onclick="openPlayer('https://drive.google.com/file/d/1NMkCkVSiQxLAURf384V_safGuTCZOn8s/preview', 'Tuto : Machine à laver')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                    <!-- Lave-linge -->
+                    <a href="https://drive.google.com/file/d/1NMkCkVSiQxLAURf384V_safGuTCZOn8s/view?usp=drive_link" target="_blank" class="flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
                         <div class="w-12 h-12 flex-shrink-0 bg-blue-50 text-blue-500 rounded-xl flex items-center justify-center text-2xl mr-4">🫧</div>
                         <div class="flex-1">
                             <h3 class="font-semibold text-gray-800">Machine à laver</h3>
                             <p class="text-xs text-gray-400">Washing machine</p>
                         </div>
                         <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </button>
+                    </a>
 
-                    <button onclick="openPlayer('https://drive.google.com/file/d/1aY7199w2PtwY6X7Zr0GBgZggL0aDEfds/preview', 'Tuto : Plaque induction')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                    <!-- Plaque induction -->
+                    <a href="https://drive.google.com/file/d/1aY7199w2PtwY6X7Zr0GBgZggL0aDEfds/view?usp=drive_link" target="_blank" class="flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
                         <div class="w-12 h-12 flex-shrink-0 bg-orange-50 text-orange-500 rounded-xl flex items-center justify-center text-2xl mr-4">🍳</div>
                         <div class="flex-1">
                             <h3 class="font-semibold text-gray-800">Plaque induction</h3>
                             <p class="text-xs text-gray-400">Induction stove</p>
                         </div>
                         <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </button>
+                    </a>
 
-                    <button onclick="openPlayer('https://drive.google.com/file/d/13du7fbTv0et0B_NHjOu62a3lsD6Odop3/preview', 'Tuto : Micro-ondes')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                    <!-- Micro-onde -->
+                    <a href="https://drive.google.com/file/d/13du7fbTv0et0B_NHjOu62a3lsD6Odop3/view?usp=drive_link" target="_blank" class="flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
                         <div class="w-12 h-12 flex-shrink-0 bg-gray-100 text-gray-600 rounded-xl flex items-center justify-center text-2xl mr-4">♨️</div>
                         <div class="flex-1">
                             <h3 class="font-semibold text-gray-800">Micro-ondes</h3>
                             <p class="text-xs text-gray-400">Microwave</p>
                         </div>
                         <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </button>
+                    </a>
 
-                    <button onclick="openPlayer('https://drive.google.com/file/d/1xuuLjmOh3LzsCEYKIrcTaWZURdMT9FDg/preview', 'Tuto : Bouilloire')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                    <!-- Bouilloire -->
+                    <a href="https://drive.google.com/file/d/1xuuLjmOh3LzsCEYKIrcTaWZURdMT9FDg/view?usp=drive_link" target="_blank" class="flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
                         <div class="w-12 h-12 flex-shrink-0 bg-teal-50 text-teal-500 rounded-xl flex items-center justify-center text-2xl mr-4">🫖</div>
                         <div class="flex-1">
                             <h3 class="font-semibold text-gray-800">Bouilloire</h3>
                             <p class="text-xs text-gray-400">Kettle</p>
                         </div>
                         <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </button>
+                    </a>
 
-                    <button onclick="openPlayer('https://drive.google.com/file/d/1LezEzqApQWpYI_53IzFefZuABL_eJdkw/preview', 'Tuto : Télévision')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                    <!-- Télévision -->
+                    <a href="https://drive.google.com/file/d/1LezEzqApQWpYI_53IzFefZuABL_eJdkw/view?usp=drive_link" target="_blank" class="flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
                         <div class="w-12 h-12 flex-shrink-0 bg-zinc-100 text-zinc-600 rounded-xl flex items-center justify-center text-2xl mr-4">📺</div>
                         <div class="flex-1">
                             <h3 class="font-semibold text-gray-800">Télévision</h3>
                             <p class="text-xs text-gray-400">Television</p>
                         </div>
                         <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </button>
+                    </a>
 
-                    <button onclick="openPlayer('https://drive.google.com/file/d/1HcMK0c2A7iMrOz8-c6kfS5wTSyY1tuSo/preview', 'Tuto : Machine à café')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                    <!-- Machine à café -->
+                    <a href="https://drive.google.com/file/d/1HcMK0c2A7iMrOz8-c6kfS5wTSyY1tuSo/view?usp=drive_link" target="_blank" class="flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
                         <div class="w-12 h-12 flex-shrink-0 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center text-2xl mr-4">☕</div>
                         <div class="flex-1">
                             <h3 class="font-semibold text-gray-800">Machine à café</h3>
                             <p class="text-xs text-gray-400">Coffee maker</p>
                         </div>
                         <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </button>
+                    </a>
 
-                    <button onclick="openPlayer('https://drive.google.com/file/d/1asJroLOSOiLJAthgJP_erkG9WxHniUa9/preview', 'Tuto : Canapé convertible')" class="w-full text-left flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+                    <!-- Canapé convertible -->
+                    <a href="https://drive.google.com/file/d/1asJroLOSOiLJAthgJP_erkG9WxHniUa9/view?usp=drive_link" target="_blank" class="flex items-center bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
                         <div class="w-12 h-12 flex-shrink-0 bg-rose-50 text-rose-500 rounded-xl flex items-center justify-center text-2xl mr-4">🛋️</div>
                         <div class="flex-1">
                             <h3 class="font-semibold text-gray-800">Canapé convertible</h3>
                             <p class="text-xs text-gray-400">Sofa bed</p>
                         </div>
                         <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </button>
+                    </a>
 
                 </div>
             </div>
@@ -159,45 +160,19 @@
         </div>
     </div>
 
-    <!-- Modale du Lecteur Vidéo/PDF -->
-    <div id="player-modal" class="fixed inset-0 z-50 bg-black/95 hidden flex-col slide-up">
-        
-        <!-- Barre de contrôle de la modale -->
-        <div class="flex items-center justify-between px-4 py-3 bg-gray-900 border-b border-gray-800 relative z-20">
-            <h3 id="player-title" class="text-white font-medium text-sm truncate pr-4">Document</h3>
-            <button onclick="closePlayer()" class="text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 p-2 rounded-full transition focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-        </div>
-        
-        <!-- Zone de lecture Iframe unique -->
-        <div class="flex-1 w-full relative flex items-center justify-center bg-black">
-            
-            <!-- Loader affiché pendant le chargement -->
-            <div id="player-loader" class="absolute flex flex-col items-center z-0">
-                <svg class="animate-spin h-8 w-8 text-blue-500 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                <span class="text-gray-400 text-xs">Chargement sécurisé Google Drive...</span>
-            </div>
-            
-            <!-- Lecteur iframe -->
-            <iframe id="player-frame" class="w-full h-full border-0 relative z-10 opacity-0 transition-opacity duration-300" allow="fullscreen; autoplay"></iframe>
-            
-        </div>
-    </div>
-
-    <!-- Scripts -->
+    <!-- Script de gestion des onglets -->
     <script>
-        // -- Gestion des onglets --
         function openTab(tabId) {
+            // 1. Mettre à jour l'URL sans déclencher le saut (pushState)
             if (history.pushState) {
                 history.pushState(null, null, '#' + tabId);
             }
+
+            // 2. Cacher tout le contenu (on cible maintenant "content-...")
             document.getElementById('content-guides').classList.add('hidden');
             document.getElementById('content-tutos').classList.add('hidden');
             
+            // 3. Réinitialiser le style de tous les boutons
             const btnGuides = document.getElementById('btn-guides');
             const btnTutos = document.getElementById('btn-tutos');
             
@@ -206,56 +181,29 @@
                 btn.classList.add('border-transparent', 'text-gray-500');
             });
 
+            // 4. Afficher l'onglet sélectionné
             document.getElementById('content-' + tabId).classList.remove('hidden');
+
+            // 5. Appliquer le style "actif" au bouton
             const activeBtn = document.getElementById('btn-' + tabId);
             activeBtn.classList.remove('border-transparent', 'text-gray-500');
             activeBtn.classList.add('border-blue-600', 'text-blue-600');
 
+            // 6. Forcer le défilement tout en haut de la fenêtre globale ET du conteneur scrollable
             window.scrollTo(0, 0);
             document.getElementById('scroll-container').scrollTop = 0;
         }
 
+        // Au chargement de la page
         window.addEventListener('DOMContentLoaded', () => {
             const hash = window.location.hash.substring(1); 
+            
             if (hash === 'tutos' || hash === 'guides') {
                 openTab(hash);
             } else {
                 openTab('guides');
             }
         });
-
-        // -- Gestion du lecteur intégré --
-        function openPlayer(url, title) {
-            const modal = document.getElementById('player-modal');
-            const iframe = document.getElementById('player-frame');
-            const loader = document.getElementById('player-loader');
-            const titleEl = document.getElementById('player-title');
-
-            titleEl.textContent = title;
-            
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            
-            iframe.style.opacity = '0';
-            loader.style.display = 'flex';
-            
-            iframe.src = url;
-            
-            iframe.onload = () => {
-                loader.style.display = 'none';
-                iframe.style.opacity = '1';
-            };
-        }
-
-        function closePlayer() {
-            const modal = document.getElementById('player-modal');
-            const iframe = document.getElementById('player-frame');
-            
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            
-            iframe.src = '';
-        }
     </script>
 </body>
 </html>
